@@ -1,0 +1,189 @@
+{
+    "paintings": [
+        {
+            "available": true,
+            "year": 2015,
+            "name": "name_0"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_1"
+        },
+        {
+            "available": true,
+            "year": 2015,
+            "name": "name_2"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_3"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_4"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_5"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_6"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_7"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_8"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_9"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_10"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_11"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_12"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_13"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_14"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_15"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_16"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_17"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_18"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_19"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_20"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_21"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_22"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_23"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_24"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_25"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_26"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_27"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_28"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_29"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_30"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_31"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_32"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_33"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_34"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_35"
+        },
+        {
+            "available": false,
+            "year": 2015,
+            "name": "name_36"
+        }
+    ]
+}

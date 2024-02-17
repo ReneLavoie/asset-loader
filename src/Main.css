@@ -1,0 +1,12 @@
+html,
+body { 
+    height: 100%;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+.mainContainer {
+display: flex;
+align-items: center;
+justify-content: center;
+}

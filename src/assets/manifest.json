@@ -1,0 +1,204 @@
+{
+    "bundles": [
+        {
+            "name": "thumbs",
+            "assets": [
+                {
+                    "name": "thumb_0",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-1.jpg"
+                },
+                {
+                    "name": "thumb_1",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-2.jpg"
+                },
+                {
+                    "name": "thumb_2",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-3.jpg"
+                },
+                {
+                    "name": "thumb_3",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-4.jpg"
+                },
+                {
+                    "name": "thumb_4",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-5.jpg"
+                },
+                {
+                    "name": "thumb_5",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-6.jpg"
+                },
+                {
+                    "name": "thumb_6",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-7.jpg"
+                },
+                {
+                    "name": "thumb_7",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-8.jpg"
+                },
+                {
+                    "name": "thumb_8",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-9.jpg"
+                },
+                {
+                    "name": "thumb_9",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-10.jpg"
+                },
+                {
+                    "name": "thumb_10",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-11.jpg"
+                },
+                {
+                    "name": "thumb_11",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-12.jpg"
+                },
+                {
+                    "name": "thumb_12",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-13.jpg"
+                },
+                {
+                    "name": "thumb_13",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-14.jpg"
+                },
+                {
+                    "name": "thumb_14",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-15.jpg"
+                },
+                {
+                    "name": "thumb_15",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-16.jpg"
+                },
+                {
+                    "name": "thumb_16",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-17.jpg"
+                },
+                {
+                    "name": "thumb_17",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-18.jpg"
+                },
+                {
+                    "name": "thumb_18",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-19.jpg"
+                },
+                {
+                    "name": "thumb_19",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-20.jpg"
+                },
+                {
+                    "name": "thumb_20",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-21.jpg"
+                },
+                {
+                    "name": "thumb_21",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-22.jpg"
+                },
+                {
+                    "name": "thumb_22",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-23.jpg"
+                },
+                {
+                    "name": "thumb_23",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-24.jpg"
+                },
+                {
+                    "name": "thumb_24",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-25.jpg"
+                },
+                {
+                    "name": "thumb_25",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-26.jpg"
+                },
+                {
+                    "name": "thumb_26",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-27.jpg"
+                },
+                {
+                    "name": "thumb_27",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-28.jpg"
+                },
+                {
+                    "name": "thumb_28",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-29.jpg"
+                },
+                {
+                    "name": "thumb_29",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-30.jpg"
+                },
+                {
+                    "name": "thumb_30",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-31.jpg"
+                },
+                {
+                    "name": "thumb_31",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-32.jpg"
+                },
+                {
+                    "name": "thumb_32",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-33.jpg"
+                },
+                {
+                    "name": "thumb_33",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-34.jpg"
+                },
+                {
+                    "name": "thumb_34",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-35.jpg"
+                },
+                {
+                    "name": "thumb_35",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-36.jpg"
+                },
+                {
+                    "name": "thumb_36",
+                    "srcs": "./assets/image/thumb/reni_painting_thumb-37.jpg"
+                }
+            ]
+        },
+        {
+        "name": "language",
+        "assets": [
+            {
+                "name": "en",
+                "srcs": "./assets/image/localization/en_flag.jpg"
+            },
+            {
+                "name": "bg",
+                "srcs": "./assets/image/localization/bg_flag.jpg"
+            },
+            {
+                "name": "fr",
+                "srcs": "./assets/image/localization/fr_flag.jpg"
+            }
+        ]
+        },
+        {
+        "name": "home",
+        "assets": [
+            {
+                "name": "background",
+                "srcs": "./assets/image/home/reni_atelier.png"
+            },
+            {
+                "name": "signature_en",
+                "srcs": "./assets/image/home/reni_signature_en.png"
+            },
+            {
+                "name": "signature_bg",
+                "srcs": "./assets/image/home/reni_signature_bg.png"
+            },
+            {
+                "name": "signature_fr",
+                "srcs": "./assets/image/home/reni_signature_fr.png"
+            }
+        ]
+        },
+        {
+        "name": "about",
+        "assets": [
+            {
+                "name": "background",
+                "srcs": "./assets/image/about/about_background.jpg"
+            }
+        ]
+        }
+    ]
+}
