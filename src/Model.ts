@@ -10,37 +10,28 @@ export type Painting = {
 export class Model {
 
     private language: string;
-    private paintings: Painting[];
 
-    private static instance: Model;
+    private static _instance: Model;
 
-    constructor() {
+    private constructor() {
         this.init();
         this.language = "bg";
     }
 
-    public static getInstance(): Model {
-        if(!Model.instance) {
-            Model.instance = new Model();
+    public static get instance(): Model {
+        if(!this._instance) {
+            this._instance = new Model();
         }
 
-        return Model.instance;
+        return this._instance;
     }
 
     public getLanguage(): string {
         return this.language; 
     }
 
-    public setPaintingData(data: Record<string, Painting[]>) {
-        this.paintings = data.paintings;
-    }
-
-    public getPaintingData(id: number): Painting {
-        return this.paintings[id];
-    }
-
     private init() {
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
     }
 
     private onLanguageChange(lang: any) {

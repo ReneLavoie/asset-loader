@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { EventDispatcher } from '../EventDispatcher';
 import { SystemEvents } from '../events/Events';
 
-export class BaseUIComponent extends PIXI.Container {
+export abstract class BaseUIComponent extends PIXI.Container {
 
     protected background: PIXI.Graphics;
 
@@ -38,7 +38,7 @@ export class BaseUIComponent extends PIXI.Container {
         this.alpha = 0;
         this.createBackground();
 
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.WINDOW_RESIZE, this.onResize, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.WINDOW_RESIZE, this.onResize, this);
     }
 
     protected createBackground() { }

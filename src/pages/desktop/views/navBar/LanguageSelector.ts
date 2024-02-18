@@ -36,14 +36,14 @@ export class LanguageSelector extends PIXI.Container {
             this.addChild(button);
             this.buttons.set(key, button);
         }
-        this.buttons.get(Model.getInstance().getLanguage()).select(true);
+        this.buttons.get(Model.instance.getLanguage()).select(true);
     }
 
     private positionButtons() {
         const enButton: LanguageBtn | undefined = this.buttons.get('en');
         const frButton: LanguageBtn | undefined = this.buttons.get('fr');
         const bgButton: LanguageBtn | undefined = this.buttons.get('bg');
-        const space = Application.windowSizes().availableWidth * 0.01;
+        const space = Application.windowSizes.availableWidth * 0.01;
 
         if (bgButton) {
             bgButton.x = 0;

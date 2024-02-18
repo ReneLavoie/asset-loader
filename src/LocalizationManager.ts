@@ -8,19 +8,19 @@ interface LocalizationData {
 
 export class LocalizationManager {
 
-    private static instance: LocalizationManager;
+    private static _instance: LocalizationManager;
     private localizationData: LocalizationData;
 
-    constructor() {
+    private constructor() {
         this.init();
     }
 
-    public static getInstance(): LocalizationManager {
-        if(!LocalizationManager.instance) {
-            LocalizationManager.instance = new LocalizationManager();
+    public static get instance(): LocalizationManager {
+        if(!this._instance) {
+            this._instance = new LocalizationManager();
         }
 
-        return LocalizationManager.instance;
+        return this._instance;
     }
 
     public getText(lang: string, section: string, key: string): string {

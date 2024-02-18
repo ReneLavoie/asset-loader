@@ -2,7 +2,7 @@ import { BaseUIComponent } from './BaseUIComponent';
 import { gsap } from 'gsap';
 import * as PIXI from 'pixi.js';
 
-export class BaseButton extends BaseUIComponent {
+export abstract class BaseButton extends BaseUIComponent {
 
 
     constructor() {

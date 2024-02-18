@@ -1,5 +1,5 @@
 {
-    "name": "reni_website",
+    "name": "asset_loader",
     "version": "1.0.0",
     "description": "",
     "browserslist": "> 0.25%, not dead",
@@ -16,6 +16,7 @@
         "@types/greensock": "^1.15.32",
         "@types/webfontloader": "^1.6.38",
         "gsap": "^3.10.4",
+        "pixi-spine": "^4.0.4",
         "pixi.js": "^7.1.4",
         "regenerator-runtime": "^0.13.9",
         "webfontloader": "^1.6.28"

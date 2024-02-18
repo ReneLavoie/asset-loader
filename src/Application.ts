@@ -4,10 +4,19 @@ import { DesktopApp } from "./pages/desktop/DesktopApp";
 import { LoadingView } from "./loadingView/LoadingView";
 import WebFont from "webfontloader";
 import { Assets } from '@pixi/assets';
-import { SystemEvents } from "./events/Events";
+import { SystemEvents, TotalHeap } from "./events/Events";
 import { EventDispatcher } from "./EventDispatcher";
 import { LocalizationManager } from "./LocalizationManager";
-import { Model, Painting } from './Model';
+import { AssetManager } from "./AssetManager";
+import { MathUtils } from "./utils/MathUtils";
+import { MemoryUsageView } from "./memoryUsageView/MemoryUsageView";
+
+type WindowSize = {
+    width: number;
+    height: number;
+    availableWidth: number;
+    availableHeight: number;
+}
 
 export class Application extends PIXI.Application {
 
@@ -17,6 +26,7 @@ export class Application extends PIXI.Application {
     private pageApp: BaseSiteApp;
 
     private loadingScreen: LoadingView;
+    private memoryUsage: MemoryUsageView;
 
     private assetManifest: any;
 
@@ -31,7 +41,7 @@ export class Application extends PIXI.Application {
         return this.app;
     }
 
-    public static windowSizes() {
+    public static  get windowSizes(): WindowSize {
         const NAV_BAR_HEIGHT = 0.9;
         return {
             width: window.visualViewport.width,
@@ -41,19 +51,12 @@ export class Application extends PIXI.Application {
         }
     }
 
-    public async loadAssetBundle(bundle: string): Promise<void> {
-        this.loadingScreen.show();
-        EventDispatcher.getInstance().getDispatcher().emit(SystemEvents.BUNDLE_LOADING);
-        const bundleAssets = await Assets.loadBundle(bundle);
-        this.loadingScreen.hide();
-
-        EventDispatcher.getInstance().getDispatcher().emit(SystemEvents.BUNDLE_LOADED,{id: bundle, assets: bundleAssets});
-    }
-
     private init() {
         Application.app = this;
         (globalThis as any).__PIXI_APP__ = this;
         this.mainContainer = new PIXI.Container();
+
+        this.startMeasureHeap();
 
         window.onresize = this.onResize.bind(this);
         window.onload = async () => {
@@ -63,8 +66,8 @@ export class Application extends PIXI.Application {
             this.renderer.resolution = 3;
             await this.loadFont();
             await this.loadLocalizationData();
-            await this.loadPaintingData();
             this.createLoadingScreen();
+            this.createMemoryUsageView();
             await this.initAssetManager();
             this.createApp();
 
@@ -73,6 +76,24 @@ export class Application extends PIXI.Application {
             (this.view as HTMLCanvasElement).style.top = '50%';
             (this.view as HTMLCanvasElement).style.transform = 'translate3d( -50%, -50%, 0 )';
         };
+    }
+
+    private startMeasureHeap() {
+        if (!window.crossOriginIsolated) {
+            console.log('performance.memory is only available in cross-origin-isolated pages');
+            return;
+        }
+
+        const INTERVAL = 1000;
+        setInterval(this.measureHeap, INTERVAL);
+    }
+
+    private measureHeap() {
+        
+        const totalHeap = MathUtils.bytesToGB(window.performance.memory.totalJSHeapSize);
+        const usedHeap = MathUtils.bytesToGB(window.performance.memory.usedJSHeapSize);
+        
+        EventDispatcher.instance.dispatcher.emit(SystemEvents.CURRENT_HEAP_USAGE, {heapSize: totalHeap, heapUsed: usedHeap} as TotalHeap);
     }
 
     private createApp() {
@@ -94,16 +115,20 @@ export class Application extends PIXI.Application {
         this.stage.addChild(this.loadingScreen);
     }
 
+    private createMemoryUsageView() {
+        this.memoryUsage = new MemoryUsageView();
+
+        this.memoryUsage.x = Application.windowSizes.width * 0.7
+        this.memoryUsage.y = Application.windowSizes.height * 0.2;
+        this.stage.addChild(this.memoryUsage);
+
+        this.memoryUsage.show();
+    }
+
     private async loadJsonAssetManifest() {
         const response = await fetch("./assets/manifest.json");
         const json = await response.json();
         this.assetManifest = json;
-    }
-
-    private async loadPaintingData() {
-        const response = await fetch("./assets/paintings.json");
-        const data: Record<string, Painting[]> = await response.json();
-        Model.getInstance().setPaintingData(data);
     }
 
     private async loadLocalizationData() {
@@ -111,14 +136,14 @@ export class Application extends PIXI.Application {
 
         const data: Record<string, Record<string, string>> = await response.json();
 
-        LocalizationManager.getInstance().setData(data);
+        LocalizationManager.instance.setData(data);
     }
 
     private static getAppOptions() {
         return {
             backgroundColor: 0x2b2b2a,
-            width: this.windowSizes().width,
-            height: this.windowSizes().height,
+            width: this.windowSizes.width,
+            height: this.windowSizes.height,
             antialias: true,
             autoDensity: true,
             resolution: 3,
@@ -130,8 +155,8 @@ export class Application extends PIXI.Application {
         clearTimeout(this.resizeTimeoutId);
 
         this.resizeTimeoutId = setTimeout(() => {
-            this.renderer.resize(Application.windowSizes().width, Application.windowSizes().height);
-            EventDispatcher.getInstance().getDispatcher().emit(SystemEvents.WINDOW_RESIZE);
+            this.renderer.resize(Application.windowSizes.width, Application.windowSizes.height);
+            EventDispatcher.instance.dispatcher.emit(SystemEvents.WINDOW_RESIZE);
         }, 200);
     }
 
@@ -150,7 +175,8 @@ export class Application extends PIXI.Application {
         if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
             return "tablet";
         }
-        else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+        
+        if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
             return "mobile";
         }
         return "desktop";

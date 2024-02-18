@@ -60,7 +60,7 @@ export class NavButton extends BaseButton {
     protected onUp(e:  PIXI.FederatedMouseEvent) {
 
         this.resetOriginalPos();
-        EventDispatcher.getInstance().getDispatcher().emit(Events.NAV_BUTTON_CLICK, { id: this.id });
+        EventDispatcher.instance.dispatcher.emit(Events.NAV_BUTTON_CLICK, { id: this.id });
     }
 
     protected onUpOutside(e:  PIXI.FederatedMouseEvent) { 

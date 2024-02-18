@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { EventDispatcher } from '../../../EventDispatcher';
 import { SystemEvents } from '../../../events/Events';
 
-export class BaseView extends PIXI.Container {
+export abstract class BaseView extends PIXI.Container {
 
     protected background: PIXI.Graphics;
 
@@ -21,7 +21,7 @@ export class BaseView extends PIXI.Container {
             return;
         }
 
-        this.y = Application.windowSizes().height;
+        this.y = Application.windowSizes.height;
         gsap.to(this, { 
             duration: 1, 
             ease: "power2.out", 
@@ -35,13 +35,13 @@ export class BaseView extends PIXI.Container {
         gsap.to(this, {
             duration: 1,
             ease: "power2.out",
-            y: -Application.windowSizes().height,
+            y: -Application.windowSizes.height,
             onComplete: () => this.visible = false
         });
     }
 
     protected init() {
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.WINDOW_RESIZE, this.onResize, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.WINDOW_RESIZE, this.onResize, this);
         this.visible = false;
         this.createBackground();
     }
@@ -57,7 +57,7 @@ export class BaseView extends PIXI.Container {
 
         this.background = new PIXI.Graphics();
         this.background.beginFill(0xffffff);
-        this.background.drawRect(0, 0, Application.windowSizes().width, Application.windowSizes().availableHeight);
+        this.background.drawRect(0, 0, Application.windowSizes.width, Application.windowSizes.availableHeight);
         this.background.endFill();
         this.background.tint = tint;
 

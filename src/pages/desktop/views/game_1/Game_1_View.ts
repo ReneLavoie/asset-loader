@@ -6,10 +6,10 @@ import { BaseView } from "../BaseView";
 import * as PIXI from 'pixi.js';
 import { AssetManager } from "../../../../AssetManager";
 
-export class HomeView extends BaseView {
+export class Game_1_View extends BaseView {
 
-   private backSprite: PIXI.Sprite;
-
+    private backSprite: PIXI.Sprite;
+   
     constructor() {
         super();
     }
@@ -23,7 +23,7 @@ export class HomeView extends BaseView {
         this.background.tint = 0xccc7bc;
         EventDispatcher.instance.dispatcher.on(SystemEvents.BUNDLE_LOADED, this.onBundleLoaded, this);
         EventDispatcher.instance.dispatcher.on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
-        AssetManager.instance.loadAssetBundle("home");
+        AssetManager.instance.loadAssetBundle("game_1");
     }
 
     protected onResize(e: any) {
@@ -31,7 +31,7 @@ export class HomeView extends BaseView {
     }
 
     private async onBundleLoaded(e: any) {
-        if (e.id !== "home") return;
+        if (e.id !== "game_1") return;
 
         this.backSprite = new PIXI.Sprite(e.assets.background); 
 

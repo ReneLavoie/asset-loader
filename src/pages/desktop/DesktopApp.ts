@@ -2,12 +2,15 @@ import { BaseSiteApp } from "../BaseSiteApp";
 import { NavigationBar } from "./views/navBar/NavigationBar";
 import { PageManager } from "../PageManager";
 import { HomeView } from "./views/home/HomeView";
-import { GalleryView } from "./views/gallery/GalleryView";
 import { Events } from "./events/Events";
 import { EventDispatcher } from "../../EventDispatcher";
 import { Application } from "../../Application";
 import { SystemEvents } from "../../events/Events";
-import { AboutView } from "./views/about/AboutView";
+import { Game_1_View } from "./views/game_1/Game_1_View";
+import { Game_2_View } from "./views/game_2/Game_2_View";
+import { Game_3_View } from "./views/game_3/Game_3_View";
+import { Game_4_View } from "./views/game_4/Game_4_View";
+import { Game_5_View } from "./views/game_5/Game_5_View";
 
 export class DesktopApp extends BaseSiteApp {
 
@@ -19,8 +22,8 @@ export class DesktopApp extends BaseSiteApp {
     }
 
     protected init() {
-        EventDispatcher.getInstance().getDispatcher().on(Events.NAV_BUTTON_CLICK, this.onNavButtonClick, this);
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.WINDOW_RESIZE, this.onResize, this);
+        EventDispatcher.instance.dispatcher.on(Events.NAV_BUTTON_CLICK, this.onNavButtonClick, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.WINDOW_RESIZE, this.onResize, this);
         this.createNavigationBar();
         this.createPages();
     }
@@ -40,8 +43,11 @@ export class DesktopApp extends BaseSiteApp {
         const homeView: HomeView = new HomeView();
         
         this.pageManager.addPage(homeView);
-        this.pageManager.addPage(new GalleryView());
-        this.pageManager.addPage(new AboutView());
+        this.pageManager.addPage(new Game_1_View());
+        this.pageManager.addPage(new Game_2_View());
+        this.pageManager.addPage(new Game_3_View());
+        this.pageManager.addPage(new Game_4_View());
+        this.pageManager.addPage(new Game_5_View());
         
         homeView.show();
 
@@ -53,6 +59,6 @@ export class DesktopApp extends BaseSiteApp {
     }
 
     private onResize(e: any) {
-        this.pageManager.y = Application.windowSizes().height * 0.1;
+        this.pageManager.y = Application.windowSizes.height * 0.1;
     }
 }

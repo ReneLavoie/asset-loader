@@ -39,10 +39,12 @@
       "name_36": "name_36"
     },
     "nav_bar": {
-      "home": "Home",
-      "gallery": "Gallery",
-      "about": "About",
-      "contact": "Contact"
+      "home": "Lobby",
+      "game_1": "Game 1",
+      "game_2": "Game 2",
+      "game_3": "Game 3",
+      "game_4": "Game 4",
+      "game_5": "Game 5"
     },
     "about": {
       "main_text": "Reni Dimitrova was born in Sofia, Bulgaria on February 17, 1966. She works at the National Institute of Meteorology and Hydrology as a technician-meteorologist. She grew up surrounded by the paintings of her great-grandfather - the great Bulgarian marine artist, Professor Alexander Mutafow. The interest, love, and respect for art have accompanied Reni's life journey from an early age. My paintings are abstract compositions in which I allow my feelings and thoughts freedom. I usually use bright, sunny tones to positively charge the person opposite me. I strive to convey my excitement and make the viewer ponder on them.” The cheerful mood and belief in goodness are intertwined in the kaleidoscope of colorful fantasies shown on the canvases. With innate delicacy and a sense for beauty, the author demonstrates the eternal quest of man to explore distant worlds and penetrate deeper into the layers of his own spirituality."
@@ -89,9 +91,11 @@
     },
     "nav_bar": {
       "home": "Acceuil",
-      "gallery": "Gallerie",
-      "about": "À propos",
-      "contact": "Contacter"
+      "game_1": "Jeu 1",
+      "game_2": "Jeu 2",
+      "game_3": "Jeu 3",
+      "game_4": "Jeu 4",
+      "game_5": "Jeu 5"
     },
     "about": {
       "main_text": "Reni Dimitrova est née à Sofia, en Bulgarie, le 17 février 1966. Elle travaille à l'Institut National de Météorologie et d'Hydrologie en tant que technicienne-météorologue. Elle a grandi entourée des tableaux de son arrière-grand-père - le grand mariniste bulgare, le professeur Alexandre Mutafow. L'intérêt, l'amour et le respect pour l'art ont accompagné le parcours de vie de Reni dès son plus jeune âge. Mes peintures sont des compositions abstraites dans lesquelles je laisse libre cours à mes sentiments et à mes pensées. J'utilise généralement des tons vifs et ensoleillés pour charger positivement la personne en face de moi. Je m'efforce de transmettre mes émotions et de faire réfléchir le spectateur à leur sujet.”L'humeur joyeuse et la croyance en la bonté sont entrelacées dans le kaléidoscope des fantasmes colorés présentés sur les toiles.Avec une délicatesse innée et un sens du beau, l'auteure démontre la quête éternelle de l'homme pour explorer des mondes lointains et pénétrer plus profondément dans les couches de sa propre spiritualité."
@@ -137,10 +141,12 @@
       "name_36": "name_36"
     },
     "nav_bar": {
-      "home": "Начална страница",
-      "gallery": "Галерия",
-      "about": "За нас",
-      "contact": "Контакт"
+      "home": "Лоби",
+      "game_1": "Игра 1",
+      "game_2": "Игра 2",
+      "game_3": "Игра 3",
+      "game_4": "Игра 4",
+      "game_5": "Игра 5"
     },
     "about": {
       "main_text": "Рени Димитрова, родена на 17 февруари 1966 година в София, България, изградила свое собствено място в света на метеорологията и изкуството. Като техник-метеоролог в Националния институт по метеорология и хидрология, тя съчетава своята научна прецизност с дълбока страст към изкуството. Детството на Рени е пропито с креативност, заобиколено от картините на нейния прадядо, известния български маринистичен художник професор Александър Мутафов. Това артистично обкръжение в нея възпитало траен любов, интерес и уважение към изкуството, което силно повлияло на нейния жизнен път.\n\nСобствените артистични изрази на Рени се проявяват в абстрактни композиции, които й позволяват свободно да изразява своите емоции и мисли. Използвайки ярки и слънчеви цветове, нейните картини се стремят да внасят позитивизъм у зрителите, предлагайки им емоционално и размислено пътуване. Нейното изкуство преплита весело настроение с вяра във вътрешната доброта на живота, създавайки калейдоскоп от цветни фантазии върху платното. Чрез своята деликатност и вродено чувство за красота, работата на Рени представя вечното стремеж на човечеството да изследва далечни светове и да прониква по-дълбоко в слоевете на собствената ни духовност."

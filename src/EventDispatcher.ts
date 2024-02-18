@@ -2,26 +2,26 @@ import * as PIXI from 'pixi.js';
 
 export class EventDispatcher {
 
-    private static instance: EventDispatcher;
-    private dispatcher: PIXI.utils.EventEmitter;
+    private static _instance: EventDispatcher;
+    private _dispatcher: PIXI.utils.EventEmitter;
 
     private constructor() {
         this.init();
     }
 
-    public static getInstance(): EventDispatcher {
-        if (!this.instance) {
-            this.instance = new EventDispatcher();
+    public static get instance(): EventDispatcher {
+        if (!this._instance) {
+            this._instance = new EventDispatcher();
         }
 
-        return this.instance;
+        return this._instance;
     }
 
-    public getDispatcher(): PIXI.utils.EventEmitter {
-        return this.dispatcher;
+    public get dispatcher(): PIXI.utils.EventEmitter {
+        return this._dispatcher;
     }
 
     private init() {
-        this.dispatcher = new PIXI.utils.EventEmitter();
+        this._dispatcher = new PIXI.utils.EventEmitter();
     }
 }

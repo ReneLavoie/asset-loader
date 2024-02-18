@@ -4,10 +4,12 @@ import { EventDispatcher } from '../EventDispatcher';
 import { Events } from './desktop/events/Events';
 
 export enum PageId {
-    Home,
-    Gallery,
-    About,
-    Contact
+    Lobby,
+    Game_1,
+    Game_2,
+    Game_3,
+    Game_4,
+    Game_5,
 }
 
 export class PageManager extends PIXI.Container {
@@ -30,7 +32,7 @@ export class PageManager extends PIXI.Container {
             return;
         }
 
-        EventDispatcher.getInstance().getDispatcher().emit(Events.SHOW_PAGE);
+        EventDispatcher.instance.dispatcher.emit(Events.SHOW_PAGE);
 
         this.pages[pageId].show();
         this.pages[this.currentPage].hide();
@@ -44,7 +46,7 @@ export class PageManager extends PIXI.Container {
     }
 
     private init() {
-        this.currentPage = PageId.Home;
+        this.currentPage = PageId.Lobby;
     }
 
 }

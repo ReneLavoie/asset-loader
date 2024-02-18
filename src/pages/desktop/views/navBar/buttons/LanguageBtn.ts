@@ -37,12 +37,12 @@ export class LanguageBtn extends BaseButton {
 
     protected init() {
         super.init();
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
     }
 
     protected createIcon() {
         this.icon = new PIXI.Sprite(this.texture);
-        this.icon.height = Application.windowSizes().height * 0.03;
+        this.icon.height = Application.windowSizes.height * 0.03;
         this.icon.scale.x = this.icon.scale.y;
         this.addChild(this.icon);
     }
@@ -63,7 +63,7 @@ export class LanguageBtn extends BaseButton {
         if(this.selected) return;
 
         this.select(true);
-        EventDispatcher.getInstance().getDispatcher().emit(SystemEvents.LANGUAGE_CHANGE, this.language);
+        EventDispatcher.instance.dispatcher.emit(SystemEvents.LANGUAGE_CHANGE, this.language);
     }
 
     protected onOver(e:  PIXI.FederatedMouseEvent) {

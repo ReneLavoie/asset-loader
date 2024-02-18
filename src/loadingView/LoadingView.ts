@@ -42,7 +42,7 @@ export class LoadingView extends BaseView {
 
         this.background = new PIXI.Graphics();
         this.background.beginFill(0xffffff);
-        this.background.drawRect(0, 0, Application.windowSizes().width, Application.windowSizes().height);
+        this.background.drawRect(0, 0, Application.windowSizes.width, Application.windowSizes.height);
         this.background.endFill();
 
         this.background.alpha = 0;
@@ -66,8 +66,8 @@ export class LoadingView extends BaseView {
 
         this.loadingAnim = new LoadingAnim();
 
-        this.loadingAnim.x = (Application.windowSizes().width - this.loadingAnim.width) * 0.5;
-        this.loadingAnim.y = (Application.windowSizes().height - this.loadingAnim.height) * 0.5;
+        this.loadingAnim.x = (Application.windowSizes.width - this.loadingAnim.width) * 0.5;
+        this.loadingAnim.y = (Application.windowSizes.height - this.loadingAnim.height) * 0.5;
 
         this.addChild(this.loadingAnim);
     }

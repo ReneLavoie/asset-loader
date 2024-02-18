@@ -10,10 +10,10 @@ import { SystemEvents } from "../../../../events/Events";
 import { LanguageSelector } from "./LanguageSelector";
 import { Model } from ".././../../../Model";
 import { LocalizationManager } from "../../../../LocalizationManager";
+import { AssetManager } from "../../../../AssetManager";
 
 export class NavigationBar extends BaseView {
 
-    private backgroundSprite: PIXI.Sprite;
     private languageSelector: LanguageSelector;
     private buttons: Map<PageId, NavButton>;
     private selectionBar: PIXI.Graphics;
@@ -57,15 +57,15 @@ export class NavigationBar extends BaseView {
 
     protected init() {
         super.init();
-        EventDispatcher.getInstance().getDispatcher().on(Events.NAV_BUTTON_CLICK, this.onNavButtonClick, this);
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.BUNDLE_LOADING, this.onBundleLoading, this);
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.BUNDLE_LOADED, this.onBundleLoaded, this);
-        EventDispatcher.getInstance().getDispatcher().on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
-        EventDispatcher.getInstance().getDispatcher().on(Events.PAGE_SHOWN, this.onPageShown, this);
-        EventDispatcher.getInstance().getDispatcher().on(Events.SHOW_PAGE, this.onShowPage, this);
+        EventDispatcher.instance.dispatcher.on(Events.NAV_BUTTON_CLICK, this.onNavButtonClick, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.BUNDLE_LOADING, this.onBundleLoading, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.BUNDLE_LOADED, this.onBundleLoaded, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
+        EventDispatcher.instance.dispatcher.on(Events.PAGE_SHOWN, this.onPageShown, this);
+        EventDispatcher.instance.dispatcher.on(Events.SHOW_PAGE, this.onShowPage, this);
 
-        Application.getApp().loadAssetBundle("language");
-        this.currentSelection = PageId.Home;
+        AssetManager.instance.loadAssetBundle("language");
+        this.currentSelection = PageId.Lobby;
         this.create();
     }
 
@@ -76,8 +76,8 @@ export class NavigationBar extends BaseView {
             this.background = null;
         }
 
-        const targetWidth: number = Application.windowSizes().width;
-        const targetHeight: number = Application.windowSizes().height * 0.1;
+        const targetWidth: number = Application.windowSizes.width;
+        const targetHeight: number = Application.windowSizes.height * 0.1;
 
         this.background = new PIXI.Graphics();
         this.background.beginFill(0xFFFFFF);
@@ -93,7 +93,7 @@ export class NavigationBar extends BaseView {
     private create() {
         this.createBackground();
         this.createButtons();
-        this.positionButtons(Model.getInstance().getLanguage());
+        this.positionButtons(Model.instance.getLanguage());
         this.createSelectionBar();
     }
 
@@ -104,7 +104,7 @@ export class NavigationBar extends BaseView {
             this.selectionBar = null;
         }
 
-        const btnHeight: number = this.buttons.get(PageId.Home).height;
+        const btnHeight: number = this.buttons.get(PageId.Lobby).height;
         const targetWidth: number = this.background.width * 0.05;
         this.selectionBar = new PIXI.Graphics();
         this.selectionBar.beginFill(0xf5f3ed);
@@ -113,7 +113,7 @@ export class NavigationBar extends BaseView {
         this.selectionBar.cacheAsBitmap = true;
         this.addChild(this.selectionBar);
 
-        this.selectionBar.y = this.buttons.get(PageId.Home).y + btnHeight + (btnHeight * 0.05);
+        this.selectionBar.y = this.buttons.get(PageId.Lobby).y + btnHeight + (btnHeight * 0.05);
         this.positionSelectionBar(this.currentSelection, true);
     }
 
@@ -130,12 +130,14 @@ export class NavigationBar extends BaseView {
 
         this.buttons = new Map<PageId, NavButton>();
 
-        this.buttons.set(PageId.Home, new NavButton(PageId.Home, this.background.width, this.background.height));
-        this.buttons.set(PageId.About, new NavButton(PageId.About, this.background.width, this.background.height));
-        this.buttons.set(PageId.Contact, new NavButton(PageId.Contact, this.background.width, this.background.height));
-        this.buttons.set(PageId.Gallery, new NavButton(PageId.Gallery, this.background.width, this.background.height));
+        this.buttons.set(PageId.Lobby, new NavButton(PageId.Lobby, this.background.width, this.background.height));
+        this.buttons.set(PageId.Game_1, new NavButton(PageId.Game_1, this.background.width, this.background.height));
+        this.buttons.set(PageId.Game_2, new NavButton(PageId.Game_2, this.background.width, this.background.height));
+        this.buttons.set(PageId.Game_3, new NavButton(PageId.Game_3, this.background.width, this.background.height));
+        this.buttons.set(PageId.Game_4, new NavButton(PageId.Game_4, this.background.width, this.background.height));
+        this.buttons.set(PageId.Game_5, new NavButton(PageId.Game_5, this.background.width, this.background.height));
 
-        this.setLabels(Model.getInstance().getLanguage());
+        this.setLabels(Model.instance.getLanguage());
 
         this.buttons.forEach((btn) => {
             this.addChild(btn);
@@ -144,26 +146,32 @@ export class NavigationBar extends BaseView {
     }
 
     private setLabels(lang: string) {
-        this.buttons.get(PageId.Home).setLabel(LocalizationManager.getInstance().getText(lang,"nav_bar", "home"));
-        this.buttons.get(PageId.About).setLabel(LocalizationManager.getInstance().getText(lang,"nav_bar", "about"));
-        this.buttons.get(PageId.Contact).setLabel(LocalizationManager.getInstance().getText(lang,"nav_bar", "contact"));
-        this.buttons.get(PageId.Gallery).setLabel(LocalizationManager.getInstance().getText(lang,"nav_bar", "gallery"));
+        this.buttons.get(PageId.Lobby).setLabel(LocalizationManager.instance.getText(lang,"nav_bar", "home"));
+        this.buttons.get(PageId.Game_1).setLabel(LocalizationManager.instance.getText(lang,"nav_bar", "game_1"));
+        this.buttons.get(PageId.Game_2).setLabel(LocalizationManager.instance.getText(lang,"nav_bar", "game_2"));
+        this.buttons.get(PageId.Game_3).setLabel(LocalizationManager.instance.getText(lang,"nav_bar", "game_3"));
+        this.buttons.get(PageId.Game_4).setLabel(LocalizationManager.instance.getText(lang,"nav_bar", "game_4"));
+        this.buttons.get(PageId.Game_5).setLabel(LocalizationManager.instance.getText(lang,"nav_bar", "game_5"));
     }
 
     private positionButtons(lang: string) {
 
         const space: number = this.background.width * 0.03;
-        const totalWidth: number = this.buttons.get(PageId.Home).width * this.buttons.size + 3 * space;
-        const offsetFactor: number = lang === "bg" ? 0.2 : 0.05;
+        const totalWidth: number = this.buttons.get(PageId.Lobby).width * this.buttons.size + 3 * space;
+        const offsetFactor: number = 0.05;
         
-        this.buttons.get(PageId.Home).x = (this.background.width - totalWidth) * offsetFactor;
-        this.buttons.get(PageId.Home).y = (this.background.height - this.buttons.get(PageId.Home).height) * 0.8;
-        this.buttons.get(PageId.Gallery).x = this.buttons.get(PageId.Home).x + this.buttons.get(PageId.Home).width + space;
-        this.buttons.get(PageId.Gallery).y = this.buttons.get(PageId.Home).y;
-        this.buttons.get(PageId.About).x = this.buttons.get(PageId.Gallery).x + this.buttons.get(PageId.Gallery).width + space;
-        this.buttons.get(PageId.About).y = this.buttons.get(PageId.Home).y;
-        this.buttons.get(PageId.Contact).x = this.buttons.get(PageId.About).x + this.buttons.get(PageId.About).width + space;
-        this.buttons.get(PageId.Contact).y = this.buttons.get(PageId.Home).y;
+        this.buttons.get(PageId.Lobby).x = (this.background.width - totalWidth) * offsetFactor;
+        this.buttons.get(PageId.Lobby).y = (this.background.height - this.buttons.get(PageId.Lobby).height) * 0.8;
+        this.buttons.get(PageId.Game_1).x = this.buttons.get(PageId.Lobby).x + this.buttons.get(PageId.Lobby).width + space;
+        this.buttons.get(PageId.Game_1).y = this.buttons.get(PageId.Lobby).y;
+        this.buttons.get(PageId.Game_2).x = this.buttons.get(PageId.Game_1).x + this.buttons.get(PageId.Game_1).width + space;
+        this.buttons.get(PageId.Game_2).y = this.buttons.get(PageId.Lobby).y;
+        this.buttons.get(PageId.Game_3).x = this.buttons.get(PageId.Game_2).x + this.buttons.get(PageId.Game_2).width + space;
+        this.buttons.get(PageId.Game_3).y = this.buttons.get(PageId.Lobby).y;
+        this.buttons.get(PageId.Game_4).x = this.buttons.get(PageId.Game_3).x + this.buttons.get(PageId.Game_3).width + space;
+        this.buttons.get(PageId.Game_4).y = this.buttons.get(PageId.Lobby).y;
+        this.buttons.get(PageId.Game_5).x = this.buttons.get(PageId.Game_4).x + this.buttons.get(PageId.Game_4).width + space;
+        this.buttons.get(PageId.Game_5).y = this.buttons.get(PageId.Lobby).y;
     }
 
     private createLanguageSelector(assets: any) {
@@ -203,14 +211,14 @@ export class NavigationBar extends BaseView {
     }
 
     private updateBarColor() {
-        switch(this.currentSelection) {
+        /*switch(this.currentSelection) {
             case PageId.Home:
                 this.background.tint = 0x333843;
                 break;
             case PageId.Gallery:
                 this.background.tint = 0x36454F;
                 break;
-        }
+        }*/
     }
 
     private onNavButtonClick(e: any) {

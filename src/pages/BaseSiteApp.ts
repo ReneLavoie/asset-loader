@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 
-export class BaseSiteApp extends PIXI.Container {
+export abstract class BaseSiteApp extends PIXI.Container {
 
     constructor() {
         super();

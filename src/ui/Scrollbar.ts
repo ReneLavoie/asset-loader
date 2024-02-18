@@ -31,12 +31,10 @@ export class Scrollbar extends PIXI.Container {
 
         if (this.background) {
             this.background.destroy();
-            this.background = null;
         }
 
         if (this.scroller) {
             this.scroller.destroy();
-            this.scroller = null;
         }
     }
 
@@ -62,7 +60,7 @@ export class Scrollbar extends PIXI.Container {
         this.alpha = 0;
         this.createBackground();
 
-        EventDispatcher.getInstance().getDispatcher().on('resize', this.onResize, this);
+        EventDispatcher.instance.dispatcher.on('resize', this.onResize, this);
         setTimeout(() => { this.createScroller() }, 100);
         this.visible = false;
     }
