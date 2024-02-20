@@ -3,50 +3,44 @@ import { BaseView } from './desktop/views/BaseView';
 import { EventDispatcher } from '../EventDispatcher';
 import { Events } from './desktop/events/Events';
 
-export enum PageId {
-    Lobby,
-    Game_1,
-    Game_2,
-    Game_3,
-    Game_4,
-    Game_5,
-}
-
 export class PageManager extends PIXI.Container {
 
     private pages: Array<BaseView> = [];
-    private currentPage: PageId;
+    private currentPageId: string;
 
     constructor() {
         super();
-
-        this.init();
     }
 
-    public getCurrentPage(): PageId {
-        return this.currentPage;
+    public getCurrentPageId(): string {
+        return this.currentPageId;
     }
 
-    public showPage(pageId: PageId) {
-        if (!this.pages[pageId] || pageId === this.currentPage) {
+    public showPage(pageId: string) {
+        
+        if(this.currentPageId === pageId) {
+            EventDispatcher.instance.dispatcher.emit(Events.PAGE_SHOWN);
             return;
         }
+       
 
-        EventDispatcher.instance.dispatcher.emit(Events.SHOW_PAGE);
+        let page;
+        if(this.currentPageId && this.currentPageId !== "") {
+            page = this.pages.find(p => p.id === this.currentPageId);
+            page.hide();
+        }
 
-        this.pages[pageId].show();
-        this.pages[this.currentPage].hide();
+        page = this.pages.find(p => p.id === pageId);
 
-        this.currentPage = pageId;
+        if(page) {
+            page.show();
+            this.currentPageId = pageId;
+        }
     }
 
     public addPage(page: BaseView) {
         this.pages.push(page);
         this.addChild(page);
-    }
-
-    private init() {
-        this.currentPage = PageId.Lobby;
     }
 
 }

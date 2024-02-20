@@ -1,75 +1,67 @@
 {
     "bundles": [
         {
-        "name": "language",
-        "assets": [
-            {
-                "name": "en",
-                "srcs": "./assets/image/localization/en_flag.jpg"
-            },
-            {
-                "name": "bg",
-                "srcs": "./assets/image/localization/bg_flag.jpg"
-            },
-            {
-                "name": "fr",
-                "srcs": "./assets/image/localization/fr_flag.jpg"
-            }
-        ]
+            "name": "nav_bar",
+            "assets": [
+                {
+                    "name": "arrow",
+                    "srcs": "./assets/image/nav_bar/arrow.png"
+                }
+            ]
         },
         {
-        "name": "home",
-        "assets": [
-            {
-                "name": "background",
-                "srcs": "./assets/image/home/lobby.jpg"
-            }
-        ]
+            "name": "lobby",
+            "assets": [
+                {
+                    "name": "background",
+                    "srcs": "./assets/image/home/background.jpg"
+                }
+            ]
         },
         {
         "name": "game_1",
-        "assets": [
-            {
-                "name": "background",
-                "srcs": "./assets/image/game_1/game_1.jpg"
-            }
-        ]
+            "assets": [
+                {
+                    "name": "background_game_1",
+                    "srcs": "./assets/image/game_1/background.jpg"
+                }
+            ]
         },
         {
         "name": "game_2",
-        "assets": [
-            {
-                "name": "background",
-                "srcs": "./assets/image/game_2/game_2.jpg"
-            }
-        ]
+            "assets": [
+                {
+                    "name": "background_game_2",
+                    "srcs": "./assets/image/game_2/background.jpg"
+                }
+            ]
         },
         {
         "name": "game_3",
-        "assets": [
-            {
-                "name": "background",
-                "srcs": "./assets/image/game_3/game_3.jpg"
-            }
-        ]
+            "assets": [
+                {
+                    "name": "background_game_3",
+                    "srcs": "./assets/image/game_3/background.jpg"
+                }
+            ]
         },
         {
         "name": "game_4",
-        "assets": [
-            {
-                "name": "background",
-                "srcs": "./assets/image/game_4/game_4.jpg"
-            }
-        ]
+            "assets": [
+                {
+                    "name": "background_game_4",
+                    "srcs": "./assets/image/game_4/background.jpg"
+                }
+            ]
         },
         {
         "name": "game_5",
-        "assets": [
-            {
-                "name": "background",
-                "srcs": "./assets/image/game_5/game_5.jpg"
-            }
-        ]
+            "assets": [
+                {
+                    "name": "background_game_5",
+                    "srcs": "./assets/image/game_5/background.jpg"
+                }
+            ]
         }
     ]
 }

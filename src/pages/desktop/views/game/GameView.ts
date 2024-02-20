@@ -1,20 +1,21 @@
+import { AssetManager } from "../../../../AssetManager";
 import { BaseView } from "../BaseView";
 import * as PIXI from 'pixi.js';
-import { AssetManager } from "../../../../AssetManager";
 import {Spine} from 'pixi-spine';
 import { Application } from "../../../../Application";
 
-export class HomeView extends BaseView {
+export class GameView extends BaseView {
 
-   private backSprite: PIXI.Sprite;
-   private backSpine: Spine;
-
+    private backSprite: PIXI.Sprite;
+    private backSpine: Spine;
+   
     constructor(id: string) {
         super(id);
     }
 
     public async show(force: boolean = false) {
         await AssetManager.instance.loadAssetBundle(this.id);
+
         super.show();
     }
 
@@ -25,7 +26,7 @@ export class HomeView extends BaseView {
     protected async onBundleLoaded(e: any) {
         if (e.id !== this.id) return;
 
-        const texture: PIXI.Texture = await AssetManager.instance.getAsset("background");
+        const texture: PIXI.Texture = await AssetManager.instance.getAsset("background_"+this.id);
         this.backSprite = new PIXI.Sprite(texture); 
         this.backSprite.x = (Application.windowSizes.availableWidth - this.backSprite.width) * 0.5;
         //this.backSpine = await AssetManager.instance.produceSpine("spine_asset");

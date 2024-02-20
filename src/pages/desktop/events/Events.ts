@@ -1,6 +1,5 @@
 
 export class Events {
-    public static NAV_BUTTON_CLICK: string = "NAV_BUTTON_CLICK";
     public static SHOW_PAGE: string = "SHOW_PAGE";
     public static PAGE_SHOWN: string = "PAGE_SHOWN";
     public static THUMBNAIL_CLICK: string = "THUMBNAIL_CLICK";

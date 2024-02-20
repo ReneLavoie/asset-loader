@@ -58,7 +58,7 @@ export class LoadingAnim extends PIXI.Container {
         gfx.drawCircle(0, 0, this.BALL_SIZE);
         gfx.endFill();
 
-        const ballTexture: PIXI.Texture = Application.getApp().renderer.generateTexture(gfx, {resolution: 5});
+        const ballTexture: PIXI.Texture = Application.app.renderer.generateTexture(gfx, {resolution: 5});
         const offset: number = ballTexture.width * 0.8;
 
         for (let i = 0; i < 6; i++) {

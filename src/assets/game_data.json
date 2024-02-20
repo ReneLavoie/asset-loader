@@ -1,0 +1,30 @@
+{
+    "games": [
+      {
+        "GameId": "game_1",
+        "Background": "background_img",
+        "Animation": "background_spine"
+      },
+      {
+        "GameId": "game_2",
+        "Background": "background_img",
+        "Animation": "background_spine"
+      },
+      {
+        "GameId": "game_3",
+        "Background": "background_img",
+        "Animation": "background_spine"
+      },
+      {
+        "GameId": "game_4",
+        "Background": "background_img",
+        "Animation": "background_spine"
+      },
+      {
+        "GameId": "game_5",
+        "Background": "background_img",
+        "Animation": "background_spine"
+      }
+    ]
+  }
+  

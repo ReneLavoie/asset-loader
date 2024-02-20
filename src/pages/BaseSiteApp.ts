@@ -7,6 +7,6 @@ export abstract class BaseSiteApp extends PIXI.Container {
         this.init();
     }
 
-    protected init() {}
+    protected async init() {}
 
 }

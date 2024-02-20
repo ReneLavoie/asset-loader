@@ -3,17 +3,24 @@ import { Application } from '../../../Application';
 import gsap from 'gsap';
 import { EventDispatcher } from '../../../EventDispatcher';
 import { SystemEvents } from '../../../events/Events';
+import { Events } from '../events/Events';
 
 export abstract class BaseView extends PIXI.Container {
 
     protected background: PIXI.Graphics;
+    private _id: string;
 
-    constructor() {
+    constructor(id: string) {
         super();
+        this._id = id;
         this.init();
     }
 
-    public show(force: boolean = false) {
+    public get id(): string {
+        return this._id;
+    }
+
+    public async show(force: boolean = false) {
         this.visible = true;
 
         if (force) {
@@ -36,39 +43,29 @@ export abstract class BaseView extends PIXI.Container {
             duration: 1,
             ease: "power2.out",
             y: -Application.windowSizes.height,
-            onComplete: () => this.visible = false
+            onComplete: () => {
+                this.visible = false;
+                this.onHideEnd();}
         });
     }
 
     protected init() {
         EventDispatcher.instance.dispatcher.on(SystemEvents.WINDOW_RESIZE, this.onResize, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.BUNDLE_LOADED, this.onBundleLoaded, this);
         this.visible = false;
-        this.createBackground();
-    }
-
-    protected createBackground() {
-        
-        let tint: number = 0xffffff;
-        if(this.background) {
-            tint = this.background.tint;
-            this.background.destroy();
-            this.background = null;
-        }
-
-        this.background = new PIXI.Graphics();
-        this.background.beginFill(0xffffff);
-        this.background.drawRect(0, 0, Application.windowSizes.width, Application.windowSizes.availableHeight);
-        this.background.endFill();
-        this.background.tint = tint;
-
-        this.addChildAt(this.background, 0);
     }
 
     protected onResize(e: any) {
-        this.createBackground();
+        
     }
 
     protected onShowEnd() {
+        EventDispatcher.instance.dispatcher.emit(Events.PAGE_SHOWN);
+    }
+
+    protected async onBundleLoaded(e: any) {
 
     }
+
+    protected onHideEnd() {}
 }

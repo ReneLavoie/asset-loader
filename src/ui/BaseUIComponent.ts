@@ -16,7 +16,6 @@ export abstract class BaseUIComponent extends PIXI.Container {
         super.destroy();
         if(this.background) {
             this.background.destroy();
-            this.background = null;
         }
     }
 

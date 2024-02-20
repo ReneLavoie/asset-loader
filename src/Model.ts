@@ -1,40 +1,31 @@
-import { EventDispatcher } from "./EventDispatcher";
-import { SystemEvents } from "./events/Events";
 
-export type Painting = {
-    available: boolean;
-    name: string;
-    year: number;
+
+export type GameData = {
+    GameId: string;
+    Animation: string;
+    Background: string;
 }
-
 export class Model {
 
-    private language: string;
+    private _gameIds: GameData[];
 
     private static _instance: Model;
 
-    private constructor() {
-        this.init();
-        this.language = "bg";
-    }
+    private constructor() {}
 
     public static get instance(): Model {
-        if(!this._instance) {
+        if (!this._instance) {
             this._instance = new Model();
         }
 
         return this._instance;
     }
 
-    public getLanguage(): string {
-        return this.language; 
+    public get gameIds(): GameData[] {
+        return this._gameIds;
     }
 
-    private init() {
-        EventDispatcher.instance.dispatcher.on(SystemEvents.LANGUAGE_CHANGE, this.onLanguageChange, this);
-    }
-
-    private onLanguageChange(lang: any) {
-        this.language = lang;
+    public set gameIds(value: GameData[]) {
+        this._gameIds = value;
     }
 }

@@ -8,13 +8,13 @@ export class LoadingView extends BaseView {
 
     private loadingAnim: LoadingAnim;
 
-    constructor() {
-        super();
+    constructor(id: string) {
+        super(id);
 
         this.init();
     }
 
-    public show() {
+    public async show() {
         if (this.visible) return;
 
         this.visible = true;
@@ -34,7 +34,7 @@ export class LoadingView extends BaseView {
         this.createLoadingAnim();
     }
 
-    protected createBackground() {
+    private createBackground() {
         if(this.background) {
             this.background.destroy();
             this.background = null;

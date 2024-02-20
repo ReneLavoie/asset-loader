@@ -1,15 +1,9 @@
 import * as PIXI from 'pixi.js';
 import { BaseSiteApp } from "./pages/BaseSiteApp";
 import { DesktopApp } from "./pages/desktop/DesktopApp";
-import { LoadingView } from "./loadingView/LoadingView";
-import WebFont from "webfontloader";
-import { Assets } from '@pixi/assets';
 import { SystemEvents, TotalHeap } from "./events/Events";
 import { EventDispatcher } from "./EventDispatcher";
-import { LocalizationManager } from "./LocalizationManager";
-import { AssetManager } from "./AssetManager";
 import { MathUtils } from "./utils/MathUtils";
-import { MemoryUsageView } from "./memoryUsageView/MemoryUsageView";
 
 type WindowSize = {
     width: number;
@@ -20,15 +14,10 @@ type WindowSize = {
 
 export class Application extends PIXI.Application {
 
-    private static app: Application;
+    private static _app: Application;
     private mainContainer: PIXI.Container;
 
     private pageApp: BaseSiteApp;
-
-    private loadingScreen: LoadingView;
-    private memoryUsage: MemoryUsageView;
-
-    private assetManifest: any;
 
     private resizeTimeoutId: NodeJS.Timeout;
 
@@ -37,8 +26,8 @@ export class Application extends PIXI.Application {
         this.init();
     }
 
-    public static getApp(): Application {
-        return this.app;
+    public static get app(): Application {
+        return this._app;
     }
 
     public static  get windowSizes(): WindowSize {
@@ -52,7 +41,7 @@ export class Application extends PIXI.Application {
     }
 
     private init() {
-        Application.app = this;
+        Application._app = this;
         (globalThis as any).__PIXI_APP__ = this;
         this.mainContainer = new PIXI.Container();
 
@@ -63,12 +52,7 @@ export class Application extends PIXI.Application {
             const gameContainer: HTMLElement = document.getElementById("gameContainer") as HTMLElement;
             gameContainer.appendChild(this.view as HTMLCanvasElement);
             this.stage.addChild(this.mainContainer);
-            this.renderer.resolution = 3;
-            await this.loadFont();
-            await this.loadLocalizationData();
-            this.createLoadingScreen();
-            this.createMemoryUsageView();
-            await this.initAssetManager();
+
             this.createApp();
 
             (this.view as HTMLCanvasElement).style.position = 'absolute';
@@ -105,40 +89,6 @@ export class Application extends PIXI.Application {
         }
     }
 
-    private async initAssetManager() {
-        await this.loadJsonAssetManifest();
-        Assets.init({ manifest: this.assetManifest });
-    }
-
-    private createLoadingScreen() {
-        this.loadingScreen = new LoadingView();
-        this.stage.addChild(this.loadingScreen);
-    }
-
-    private createMemoryUsageView() {
-        this.memoryUsage = new MemoryUsageView();
-
-        this.memoryUsage.x = Application.windowSizes.width * 0.7
-        this.memoryUsage.y = Application.windowSizes.height * 0.2;
-        this.stage.addChild(this.memoryUsage);
-
-        this.memoryUsage.show();
-    }
-
-    private async loadJsonAssetManifest() {
-        const response = await fetch("./assets/manifest.json");
-        const json = await response.json();
-        this.assetManifest = json;
-    }
-
-    private async loadLocalizationData() {
-        const response = await fetch("./assets/localization/languages.json");
-
-        const data: Record<string, Record<string, string>> = await response.json();
-
-        LocalizationManager.instance.setData(data);
-    }
-
     private static getAppOptions() {
         return {
             backgroundColor: 0x2b2b2a,
@@ -158,16 +108,6 @@ export class Application extends PIXI.Application {
             this.renderer.resize(Application.windowSizes.width, Application.windowSizes.height);
             EventDispatcher.instance.dispatcher.emit(SystemEvents.WINDOW_RESIZE);
         }, 200);
-    }
-
-    private async loadFont(): Promise<void> {
-        return new Promise((resolve, reject) => {
-            WebFont.load({
-                google: {families: ['Marck Script']},
-                active: () => {resolve();},
-                inactive: () => {reject(new Error('Font loading failed'));}
-            });
-        });
     }
 
     private deviceType(): string {

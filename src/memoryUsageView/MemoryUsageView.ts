@@ -3,18 +3,20 @@ import { SystemEvents, TotalHeap } from '../events/Events';
 import { BaseView } from '../pages/desktop/views/BaseView';
 import * as PIXI from 'pixi.js';
 import { Application } from "../Application";
+import { MathUtils } from '../utils/MathUtils';
 
 export class MemoryUsageView extends BaseView {
 
     private heapUsed: PIXI.Text;
+    private memoryUsed: PIXI.Text;
 
-    constructor() {
-        super();
+    constructor(id: string) {
+        super(id);
 
         this.init();
     }
 
-    public show() {
+    public async show() {
         this.visible = true;
     }
 
@@ -24,6 +26,7 @@ export class MemoryUsageView extends BaseView {
         this.createText();
 
         EventDispatcher.instance.dispatcher.on(SystemEvents.CURRENT_HEAP_USAGE, this.onHeapUsage, this);
+        EventDispatcher.instance.dispatcher.on(SystemEvents.MEMORY_UPDATE, this.onMemoryUpdate, this);
     }
 
     protected createBackground() {
@@ -33,7 +36,7 @@ export class MemoryUsageView extends BaseView {
         }
 
         const targetWidth = Application.windowSizes.width * 0.15;
-        const targetHeight = Application.windowSizes.availableHeight * 0.15;
+        const targetHeight = Application.windowSizes.availableHeight * 0.1;
 
         this.background = new PIXI.Graphics();
         this.background.beginFill(0xffffff);
@@ -49,16 +52,31 @@ export class MemoryUsageView extends BaseView {
 
         this.heapUsed = new PIXI.Text('Heap used: ', {
             fontSize: 20,
-            fill: 0x0000ff
+            fill: 0x00ff00
         });
 
         this.heapUsed.x = this.background.width * 0.1;
         this.heapUsed.y = this.background.height * 0.1;
 
         this.addChild(this.heapUsed);
+
+        this.memoryUsed = new PIXI.Text('Memory used: ', {
+            fontSize: 20,
+            fill: 0x00ff00
+        });
+
+        this.memoryUsed.x = this.background.width * 0.1;
+        this.memoryUsed.y = this.heapUsed.height * 2;
+
+        this.addChild(this.memoryUsed);
     }
 
     private onHeapUsage(e: TotalHeap ) {
         this.heapUsed.text = `Heap used: ${e.heapUsed.toFixed(4)} GB`;
+    }
+
+    private onMemoryUpdate(e: number) {
+        const value = MathUtils.bytesToGB(e);
+        this.memoryUsed.text = `Memory used: ${value.toFixed(4)} GB`;
     }
 }
