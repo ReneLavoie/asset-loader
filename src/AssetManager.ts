@@ -46,9 +46,8 @@ export class AssetManager {
 
     public async loadAssetBundle(bundle: string): Promise<void> {
         EventDispatcher.instance.dispatcher.emit(SystemEvents.BUNDLE_LOADING);
-        let bundleAssets;
         try{
-            bundleAssets = await Assets.loadBundle(bundle);
+            const bundleAssets = await Assets.loadBundle(bundle);
             this.bundles.set(bundle, bundleAssets);
             this.evaluateTotalMemory(bundleAssets);
             EventDispatcher.instance.dispatcher.emit(SystemEvents.BUNDLE_LOADED,{id: bundle, assets: bundleAssets});
